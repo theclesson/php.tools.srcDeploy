@@ -16,7 +16,7 @@ class CurlSftp {
 	private $error	= array();
 	private $fp		= NULL;
 	
-	private $debug	= 1;
+	private $debug	= FALSE;
 	
 	public function __construct( $config = NULL ) {
 		$this->curl	= curl_init();
@@ -25,7 +25,7 @@ class CurlSftp {
 	
 	public function setConfig( $config, $val=NULL ) {
 		
-		$this->debug( $config, 'setConfig() > $config' );
+		$this->debug( $config, 'CurlSftp::setConfig() > $config' );
 		
 		if ( is_array($config) ) {
 			$this->conf	= $config;
@@ -47,7 +47,7 @@ class CurlSftp {
 			echo "[ERROR] File is Not Exists or Read Error. \n";
 			return FALSE;
 		}
-		$this->debug( $file, 'send() > $file' );
+		$this->debug( $file, 'CurlSftp::send() > $file' );
 		
 		curl_setopt( $this->curl, CURLOPT_INFILESIZE, 	filesize($file['path']) );
 		curl_setopt( $this->curl, CURLOPT_INFILE,		$this->fp );
@@ -60,8 +60,8 @@ class CurlSftp {
 		curl_close ( $this->curl );
 		fclose( $this->fp );
 		
-		$this->debug( $info );
-		$this->debug( $error_no, 'send > error_no' );
+		$this->debug( $info, 'CurlSftp::send() > $info' );
+		$this->debug( $error_no, 'CurlSftp::send > error_no' );
 		
 		echo "Local File    : {$file['path']} \n";
 		echo "Remote File   : {$this->conf[CURLOPT_URL]} \n";

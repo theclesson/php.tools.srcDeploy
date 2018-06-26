@@ -21,7 +21,7 @@ class Deploy {
 	private $file		= array();
 	private $ftp		= NULL;
 	
-	private $debug		= 0;
+	private $debug		= FALSE;
 	
 	public function __construct( $iniFile = NULL ) {
 		$this->setConfig( $iniFile );
@@ -143,7 +143,7 @@ class Deploy {
 		$this->file['type'] 	= @is_file( $this->file['path'] ) ? self::IS_FILE : self::IS_DIR ;
 		$this->debug( $this->file, 'checkFile() > $this->file' );
 		
-		if ( $this->file['proj'] == self::THIS_PROJECT ) {
+		if ( preg_match( '/'. self::THIS_PROJECT .'/i', $this->file['proj'] ) ) {
 			echo "[ERROR] Source file in this tool. select other file. \n";
 			return FALSE;
 		}
