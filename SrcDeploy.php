@@ -1,5 +1,5 @@
 <?php
-require_once( 'classes/curlSftp.class.php' );
+require_once( 'classes/CurlSftp.class.php' );
 
 $deploy	= new Deploy( './conf/SrcDeploy.ini' );
 $deploy->run( $argv );
