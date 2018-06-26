@@ -1,8 +1,6 @@
-# srcDeploy
-
 ## Configuation
 
-## set Eclipse
+## Set Eclipse
 * Run Configurations
 * PHP CLI Application > New
   + PHP Script
